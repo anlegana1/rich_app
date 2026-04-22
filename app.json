@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "scheme": "canchasapp",
     "web": {
-      "bundler": "metro",
+      "bundler": "webpack",
       "output": "static"
     },
     "plugins": [
