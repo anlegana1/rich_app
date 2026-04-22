@@ -8,8 +8,9 @@
     "userInterfaceStyle": "light",
     "scheme": "canchasapp",
     "web": {
-      "bundler": "webpack",
-      "output": "static"
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/icon.png"
     },
     "plugins": [
       "expo-router",
