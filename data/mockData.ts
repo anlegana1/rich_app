@@ -166,6 +166,50 @@ export const chatsMock: Chat[] = [
     clienteNombre: 'Carlos M.',
     mensajes: mensajesMock,
     online: true
+  },
+  {
+    id: '2',
+    canchaId: '2',
+    canchaName: 'Cancha sintética',
+    clienteId: 'cliente2',
+    clienteNombre: 'Andrés R.',
+    mensajes: [
+      {
+        id: '5',
+        senderId: 'cliente2',
+        senderName: 'Andrés',
+        mensaje: 'Hola, ¿tienen disponibilidad para el domingo?',
+        timestamp: '2:30 pm',
+        isOwner: false
+      },
+      {
+        id: '6',
+        senderId: 'owner2',
+        senderName: 'Admin',
+        mensaje: 'Sí, tenemos horarios de 8am a 10pm',
+        timestamp: '2:35 pm',
+        isOwner: true
+      }
+    ],
+    online: false
+  },
+  {
+    id: '3',
+    canchaId: '1',
+    canchaName: 'Canchas del Norte',
+    clienteId: 'cliente3',
+    clienteNombre: 'Luisa P.',
+    mensajes: [
+      {
+        id: '7',
+        senderId: 'cliente3',
+        senderName: 'Luisa',
+        mensaje: '¿Incluye balón en la reserva?',
+        timestamp: 'Ayer',
+        isOwner: false
+      }
+    ],
+    online: false
   }
 ];
 

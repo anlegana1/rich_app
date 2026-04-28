@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import { Colors } from '../../constants/Colors';
 import { canchas } from '../../data/mockData';
 
-export default function Explorar() {
+export default function Explore() {
   const router = useRouter();
 
   return (
@@ -37,31 +37,31 @@ export default function Explorar() {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.canchasContainer}>
-          {canchas.map((cancha) => (
+        <View style={styles.courtsContainer}>
+          {canchas.map((court) => (
             <TouchableOpacity
-              key={cancha.id}
+              key={court.id}
               style={[
-                styles.canchaCard,
-                { backgroundColor: cancha.fotos[0] }
+                styles.courtCard,
+                { backgroundColor: court.fotos[0] }
               ]}
-              onPress={() => router.push(`/client/detalle?id=${cancha.id}`)}
+              onPress={() => router.push(`/client/detalle?id=${court.id}`)}
             >
-              <View style={styles.canchaOverlay}>
-                <View style={styles.canchaHeader}>
+              <View style={styles.courtOverlay}>
+                <View style={styles.courtHeader}>
                   <Ionicons name="football" size={20} color="white" />
-                  <Text style={styles.canchaLabel}>Cancha sintética</Text>
+                  <Text style={styles.courtLabel}>Cancha sintética</Text>
                 </View>
-                <View style={styles.canchaStatus}>
-                  {cancha.disponible ? (
+                <View style={styles.courtStatus}>
+                  {court.disponible ? (
                     <>
                       <Ionicons name="checkmark-circle" size={16} color="white" />
-                      <Text style={styles.canchaStatusText}>Disponible</Text>
+                      <Text style={styles.courtStatusText}>Disponible</Text>
                     </>
                   ) : (
                     <>
                       <Ionicons name="close-circle" size={16} color="white" />
-                      <Text style={styles.canchaStatusText}>Llena</Text>
+                      <Text style={styles.courtStatusText}>Llena</Text>
                     </>
                   )}
                 </View>
@@ -139,32 +139,32 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '600',
   },
-  canchasContainer: {
+  courtsContainer: {
     padding: 20,
     gap: 12,
   },
-  canchaCard: {
+  courtCard: {
     height: 120,
     borderRadius: 16,
     overflow: 'hidden',
   },
-  canchaOverlay: {
+  courtOverlay: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
     padding: 16,
     justifyContent: 'space-between',
   },
-  canchaHeader: {
+  courtHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
   },
-  canchaLabel: {
+  courtLabel: {
     color: 'white',
     fontSize: 16,
     fontWeight: '600',
   },
-  canchaStatus: {
+  courtStatus: {
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'flex-end',
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     gap: 6,
   },
-  canchaStatusText: {
+  courtStatusText: {
     color: 'white',
     fontSize: 14,
     fontWeight: '600',
