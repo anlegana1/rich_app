@@ -12,10 +12,13 @@ Aplicación para alquiler de canchas sintéticas con React Native + Expo.
 
 ### Rol Cliente
 - **Explorar**: Buscar canchas cercanas con filtros
-- **Detalle**: Ver información completa de cada cancha
-- **Reservar**: Sistema de reservas con calendario y horas
+- **Reservas**: Ver y gestionar mis reservas activas
 - **Chat**: Comunicación con dueños de canchas
-- **Mis Reservas**: Gestión de reservas activas
+- **Perfil**: Configuración y datos del usuario
+
+**Navegación adicional:**
+- Detalle de cancha (desde Explorar)
+- Reservar cancha (desde Detalle)
 
 ## 🛠️ Tech Stack
 
@@ -44,14 +47,14 @@ npm run android
 ## 🌐 Deploy Web
 
 ```bash
-# Exportar para web
-npx expo export:web
+# Exportar para web (Metro bundler)
+npx expo export -p web
 
-# Deploy a Vercel
-vercel deploy
+# Deploy a Vercel (automático con git push)
+# La app usa vercel.json para configuración
+git push
 
-# O a Netlify
-netlify deploy --dir web-build
+# Output directory: dist/
 ```
 
 ## 📱 Deploy Móvil (Futuro)
@@ -75,15 +78,15 @@ eas submit --platform android
 ## 📂 Estructura del Proyecto
 
 ```
-richapp/
+rich_app/
 ├── app/                    # Rutas de la aplicación
-│   ├── owner/             # Pantallas del dueño
-│   ├── client/            # Pantallas del cliente
+│   ├── owner/             # Pantallas del dueño (4 tabs)
+│   ├── client/            # Pantallas del cliente (4 tabs + 2 navegación)
 │   └── index.tsx          # Home selector de rol
 ├── constants/             # Colores y constantes
-├── data/                  # Datos mock
+├── data/                  # Datos mock (sin backend real)
 ├── types/                 # TypeScript types
-└── README.md
+└── vercel.json            # Configuración deploy
 ```
 
 ## 🎨 Diseño
