@@ -6,19 +6,19 @@ Aplicación para alquiler de canchas sintéticas con React Native + Expo.
 
 ### Rol Dueño
 - **Dashboard**: Vista general de reservas, ingresos y calificaciones
-- **Mi Cancha**: Gestión de información de la cancha (fotos, precios, amenidades)
+- **Mi Cancha**: Gestión de información de la cancha con mapa embebido
 - **Agenda**: Calendario de reservas con vista detallada
-- **Mensajes**: Chat con clientes
+- **Mensajes**: Sistema de chat con modal overlay (IDs no expuestos en URL)
 
 ### Rol Cliente
 - **Explorar**: Buscar canchas cercanas con filtros
 - **Reservas**: Ver y gestionar mis reservas activas
-- **Chat**: Comunicación con dueños de canchas
+- **Chat**: Sistema de chat con modal overlay (IDs no expuestos en URL)
 - **Perfil**: Configuración y datos del usuario
 
 **Navegación adicional:**
-- Detalle de cancha (desde Explorar)
-- Reservar cancha (desde Detalle)
+- Detalle de cancha con mapa de ubicación (desde Explorar)
+- Reservar cancha con selección de horarios (desde Detalle)
 
 ## 🛠️ Tech Stack
 
@@ -27,6 +27,15 @@ Aplicación para alquiler de canchas sintéticas con React Native + Expo.
 - **Expo Router** - Navegación file-based
 - **TypeScript** - Type safety
 - **React Native Web** - Soporte web
+- **Google Maps** - Mapas embebidos (iframe web, WebView mobile)
+
+## 🔒 Características de Seguridad
+
+### Sistema de Chat con Modal
+- **URL Segura**: Las conversaciones no exponen IDs en la URL (`/client/chat` siempre igual)
+- **Estado Local**: Chat se maneja con `useState` y Modal overlay
+- **Sin Navegación Dinámica**: Elimina rutas `[chatId]` para evitar IDs adivinables
+- **UX Fluida**: Animación slide con `presentationStyle="pageSheet"`
 
 ## 📦 Instalación
 
@@ -79,13 +88,31 @@ eas submit --platform android
 
 ```
 rich_app/
-├── app/                    # Rutas de la aplicación
-│   ├── owner/             # Pantallas del dueño (4 tabs)
-│   ├── client/            # Pantallas del cliente (4 tabs + 2 navegación)
+├── app/                    # Rutas de la aplicación (Expo Router)
+│   ├── owner/             # Pantallas del dueño
+│   │   ├── index.tsx      # Dashboard
+│   │   ├── agenda.tsx     # Calendario de reservas
+│   │   ├── mensajes.tsx   # Lista de chats + Modal de conversación
+│   │   ├── cancha.tsx     # Gestión de cancha + Mapa embebido
+│   │   └── _layout.tsx    # Tabs layout
+│   ├── client/            # Pantallas del cliente
+│   │   ├── index.tsx      # Explorar canchas
+│   │   ├── reservas.tsx   # Mis reservas
+│   │   ├── chat.tsx       # Lista de chats + Modal de conversación
+│   │   ├── perfil.tsx     # Perfil del usuario
+│   │   ├── detalle.tsx    # Detalle de cancha + Mapa
+│   │   ├── reservar.tsx   # Formulario de reserva
+│   │   └── _layout.tsx    # Tabs layout
 │   └── index.tsx          # Home selector de rol
+├── components/            # Componentes reutilizables
+│   └── MapView.tsx        # Mapa multiplataforma (iframe/WebView)
 ├── constants/             # Colores y constantes
+│   └── Colors.ts
 ├── data/                  # Datos mock (sin backend real)
+│   └── mockData.ts
 ├── types/                 # TypeScript types
+│   ├── index.ts
+│   └── jsx.d.ts           # Declaraciones JSX
 └── vercel.json            # Configuración deploy
 ```
 
@@ -95,13 +122,48 @@ La app usa datos hardcodeados (mockData.ts) para desarrollo. Los colores princip
 - Verde primario: `#10B981`
 - Azul secundario: `#3B82F6`
 
+## 📝 Convenciones de Código
+
+### Idiomas
+- **Código** (funciones, variables, comentarios): 🇬🇧 **Inglés**
+  ```tsx
+  export default function Explore() {
+    const getLastMessage = () => { ... }
+    const openChat = ...
+  }
+  ```
+- **UI visible** (textos, placeholders, títulos): 🇪🇸 **Español**
+  ```tsx
+  <Text style={styles.title}>Canchas cerca de ti</Text>
+  placeholder="Buscar cancha o sector..."
+  title: 'Explorar'
+  ```
+
+### Beneficios
+- ✅ **Código internacional** - Desarrolladores de cualquier país pueden contribuir
+- ✅ **UX localizada** - Usuarios ven todo en español
+- ✅ **Mantenible** - Facilita internacionalización (i18n) en el futuro
+
 ## 🔄 Siguiente Fase
 
-- Backend con Supabase/Firebase
-- Autenticación de usuarios
-- Mapas con ubicación real
-- Pagos integrados
-- Notificaciones push
+### Backend & Autenticación
+- Integrar Supabase o Firebase
+- Sistema de autenticación (email/password, OAuth)
+- Base de datos real para canchas, reservas y chats
+
+### Funcionalidades
+- Envío de mensajes real-time en chat
+- Sistema de pagos (Stripe, Mercado Pago)
+- Notificaciones push para reservas confirmadas
+- Geocodificación real con API de Google Maps
+- Carga de imágenes a cloud storage
+- Sistema de calificaciones y reviews
+
+### UX Improvements
+- Modo oscuro
+- Internacionalización (i18n) multi-idioma
+- Animaciones mejoradas con Reanimated
+- Optimización de rendimiento
 
 ## 📄 Licencia
 
