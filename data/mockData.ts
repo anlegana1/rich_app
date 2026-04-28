@@ -4,7 +4,7 @@ export const canchas: Cancha[] = [
   {
     id: '1',
     nombre: 'Canchas del Norte',
-    direccion: 'Cra 13 #45-67, Chapinero',
+    direccion: 'Cra 13 #45-67, Chapinero, Bogotá',
     precio: 80000,
     telefono: '310 555 0123',
     tipo: 'Fútbol 5',
@@ -18,7 +18,7 @@ export const canchas: Cancha[] = [
   {
     id: '2',
     nombre: 'Cancha sintética',
-    direccion: 'Calle 80 #15-20',
+    direccion: 'Calle 80 #15-20, Bogotá',
     precio: 70000,
     telefono: '310 555 0124',
     tipo: 'Fútbol 5',

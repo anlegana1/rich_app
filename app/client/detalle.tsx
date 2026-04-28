@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Colors } from '../../constants/Colors';
 import { canchas } from '../../data/mockData';
+import MapView from '../../components/MapView';
 
 export default function DetalleCancha() {
   const router = useRouter();
@@ -67,6 +68,19 @@ export default function DetalleCancha() {
                 <Text style={styles.amenidadText}>{amenidad}</Text>
               </View>
             ))}
+          </View>
+        </View>
+
+        <View style={styles.section}>
+          <View style={styles.locationHeader}>
+            <Ionicons name="location" size={24} color={Colors.primary} />
+            <View style={styles.locationInfo}>
+              <Text style={styles.sectionTitle}>Ubicación</Text>
+              <Text style={styles.addressText}>{cancha.direccion}</Text>
+            </View>
+          </View>
+          <View style={styles.mapContainer}>
+            <MapView address={cancha.direccion} style={styles.map} />
           </View>
         </View>
 
@@ -181,6 +195,30 @@ const styles = StyleSheet.create({
   amenidadText: {
     fontSize: 16,
     color: Colors.text,
+  },
+  locationHeader: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 12,
+    marginBottom: 16,
+  },
+  locationInfo: {
+    flex: 1,
+  },
+  addressText: {
+    fontSize: 14,
+    color: Colors.textSecondary,
+    marginTop: 4,
+  },
+  mapContainer: {
+    height: 250,
+    borderRadius: 12,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: Colors.border,
+  },
+  map: {
+    flex: 1,
   },
   footer: {
     position: 'absolute',

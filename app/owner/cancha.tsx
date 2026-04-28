@@ -3,6 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../constants/Colors';
 import { canchas } from '../../data/mockData';
+import MapView from '../../components/MapView';
 
 export default function MiCancha() {
   const cancha = canchas[0];
@@ -37,6 +38,15 @@ export default function MiCancha() {
           <Text style={styles.sectionLabel}>Dirección</Text>
           <View style={styles.infoBox}>
             <Text style={styles.infoText}>{cancha.direccion}</Text>
+          </View>
+          <View style={styles.mapPreviewContainer}>
+            <View style={styles.mapHeader}>
+              <Ionicons name="map-outline" size={20} color={Colors.primary} />
+              <Text style={styles.mapHeaderText}>Vista previa del mapa</Text>
+            </View>
+            <View style={styles.mapWrapper}>
+              <MapView address={cancha.direccion} style={styles.mapView} />
+            </View>
           </View>
         </View>
 
@@ -139,6 +149,31 @@ const styles = StyleSheet.create({
   infoText: {
     fontSize: 16,
     color: Colors.text,
+  },
+  mapPreviewContainer: {
+    marginTop: 12,
+  },
+  mapHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 8,
+    paddingVertical: 8,
+  },
+  mapHeaderText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: Colors.primary,
+  },
+  mapWrapper: {
+    height: 200,
+    borderRadius: 12,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: Colors.border,
+  },
+  mapView: {
+    flex: 1,
   },
   typeContainer: {
     flexDirection: 'row',
