@@ -139,10 +139,7 @@ La app usa datos hardcodeados (mockData.ts) para desarrollo. Los colores princip
   title: 'Explorar'
   ```
 
-### Beneficios
-- ✅ **Código internacional** - Desarrolladores de cualquier país pueden contribuir
-- ✅ **UX localizada** - Usuarios ven todo en español
-- ✅ **Mantenible** - Facilita internacionalización (i18n) en el futuro
+
 
 ## 🔄 Siguiente Fase
 
